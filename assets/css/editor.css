@@ -1,0 +1,110 @@
+@import url(/assets/fonts/fonts.css);
+
+.editor h1 {
+    font-size: 5rem;
+    padding-bottom: 3.2rem;
+}
+
+.editor .menu h1 {
+    padding-bottom: 0;
+}
+
+.editor h2 {
+    font-size: 4rem;
+    padding-bottom: 1.6rem;
+}
+
+.editor h3 {
+    font-size: 3.2rem;
+}
+
+.editor p {
+    line-height: 1.5;
+}
+
+.editor p,
+.editor button {
+    font-size: 1.8rem;
+    padding-bottom: 1.6rem;
+    font-family: var(--font-paragraph);
+}
+
+.editor a {
+    font-size: 1.6rem;
+    letter-spacing: 0.05rem;
+}
+
+.editor button {
+    letter-spacing: 0.18rem;
+}
+
+small {
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: 0.1rem;
+}
+
+
+
+/*================ Text Transform =================*/
+small, 
+.editor h3 {
+    text-transform: uppercase;
+}
+
+/*================ Font Weight =================*/
+.editor h1,
+.editor h2,
+.editor h3,
+.editor button {
+    font-weight: 700; 
+}
+
+small,
+.editor a {
+    font-weight: 500;
+}
+
+.editor p {
+    font-weight: 300;
+}
+
+.editor .copy p {
+    padding: 0;
+} 
+
+/*================ END Font Weight =================*/
+
+
+
+/*================ Colors =================*/
+small,
+.editor h1,
+.editor h2,
+.editor h3,
+.editor p,
+.editor a {
+    color: var(--color-light);
+}
+/*================ END Colors =================*/
+
+
+
+/*================ Responsive =================*/
+@media (max-width: 768px) {
+    .editor h1 {
+        font-size: 4rem;
+    }   
+}
+
+@media (max-width: 426px) {
+    .editor h1 {
+        font-size: 3.6rem;
+    }
+    
+    .editor h2 {
+        font-size: 3.2rem;
+        padding-bottom: 1.6rem;
+    }
+} 
+/*================ END Responsive =================*/
