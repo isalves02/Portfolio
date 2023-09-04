@@ -209,6 +209,9 @@
 }
 
 @media (min-width: 1920px) {
+    .editor p, .editor button {
+        font-size: 2.2rem;
+    }
 
 }
 

@@ -1,15 +1,32 @@
-$(window).on("load", function() {
+$(document).ready(function() {
+    $('a').on('click', function(event) {
+        event.preventDefault();
+
+        var href =  $(this).attr('href');
+        var getID = href.match(/\#\w+/);
+            
+        console.log(getID);            
+        if (getID) {
+            $(this).attr('href', getID[0]);
+
+            $('body, html').animate({
+                scrollTop: $(href).offset().top - $('.nav').outerHeight()
+            }, 1);
+        }
+    });
+
     menuToggle();
+    animateContent();
 });
 
 
 $(window).on("scroll", function() {
-   showContent();
+   animateContent();
 });
 
 
 $(window).on("resize", function() {
-   showContent();
+   animateContent();
 
 });
 
@@ -20,7 +37,7 @@ var menuToggle = function () {
     });
 }
 
-var showContent = function () {
+var animateContent = function () {
     let vh = $(window).height();
     var pos = $(window).scrollTop();
 
