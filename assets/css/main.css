@@ -1,4 +1,4 @@
-@import url(/assets/css/editor.css);
+@import url(editor.css);
 
 /*================ Reset =================*/
 :root {
@@ -13,7 +13,8 @@
     --color-yellow: #FFB803; 
     --color-medium-yellow: #C97A03; 
     --color-purple: #6925A1;
-    --color-purple-2: #3A135B;
+    --color-medium-purple: #3A135B;
+    --color-dark-purple: #20003b;
     --color-light-gray: #C4C4C4;
 }
 
@@ -76,6 +77,9 @@ button {
     background: transparent;
 }
 
+br { display: none; }
+
+
 /*================ END Reset =================*/
 
 
@@ -88,8 +92,12 @@ button {
 .color-light { color:var(--color-light); }
 .color-yellow { color:var(--color-yellow); }
 .color-purple { color:var(--color-purple); }
-.color-purple-2 { color:var(--color-purple-2); }
+.color-medium-purple { color:var(--color-medium-purple); }
 .color-light-gray { color:var(--color-light-gray); }
+
+.bg-dark-purple {
+    background: var(--color-dark-purple);
+}
 
 /*================ END Colors =================*/
 
@@ -109,7 +117,7 @@ button {
 
 
 
-/*================ Grid =================*/
+/*================ Container =================*/
 .container { 
     width: 100%;
     margin: 0 auto;
@@ -117,35 +125,7 @@ button {
     max-width: 90%;
 }
 
-.grid-1 { max-width: 8.33%; }
-.grid-2 { max-width: 16.66%; } 
-.grid-3 { max-width: 25%; }
-.grid-4 { max-width: 33.33%; }
-.grid-5 { max-width: 41.66%; }
-.grid-6 { max-width: 50%; } 
-.grid-7 { max-width: 58.33%; }
-.grid-8 { max-width: 66.66%; } 
-.grid-9 { max-width: 75%; }
-.grid-10 { max-width: 83.33%; }
-.grid-11 { max-width: 91.66%; }
-.grid-12 { max-width: 100%; }
-
-
-.grid-1,
-.grid-2, 
-.grid-3,
-.grid-4,
-.grid-5,
-.grid-6, 
-.grid-7,
-.grid-8, 
-.grid-9, 
-.grid-10,
-.grid-11,
-.grid-12 {
-    width: 100%;
-}
-/*================ END Grid =================*/
+/*================ END Container =================*/
 
 
 
@@ -173,7 +153,7 @@ button {
 
 
 /*================ Padding =================*/
-.padding-default { padding: 12.8rem 0; }
+.padding-default { padding: 8rem 0; }
 
 /*================ END Padding =================*/
 
@@ -187,16 +167,16 @@ button {
 
 
 
-/*================ Text Config =================*/
+/*================ Text Settings =================*/
 .text-align-left { text-align: left; }
 .text-align-right { text-align: right; }
 .text-align-center { text-align: center; }
 
-/*================ END Text Config =================*/
+/*================ END Text Settings =================*/
 
 
 
-/*================ General Config =================*/
+/*================ General Settings =================*/
 .btn {
     padding: 1.6rem 2rem;
     display: inline-block;
@@ -207,7 +187,7 @@ button {
     text-transform: lowercase;
     
     color: var(--color-light-gray);
-    background: var(--color-purple-2);
+    background: var(--color-medium-purple);
     font-family: var(--font-paragraph);
 }
 
@@ -217,15 +197,26 @@ button {
     margin: 3.2rem auto 1.6rem;
     border: solid #7A7A7A 1px;
 }
-/*================ General Config =================*/
+
+/*================ General Settings =================*/
 
 
 
 /*================ Nav =================*/
-.nav .menu { padding-top: 3.2rem; }
+.nav {
+    padding: 1.2rem 0;
+
+    left: 0;
+    right: 0;
+    position: fixed;
+    
+    z-index: 100;
+    background: var(--color-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
 
 .nav .menu svg { 
-    width: 18rem;
+    width: 14rem;
     height: auto; 
 }
 
@@ -257,11 +248,9 @@ button {
     transition: transform .3s ease;
 }
 
-
 .nav .menu .menu-toggle i:nth-child(2) {
     margin: 1rem 0;
 }
-
 
 /*================ END Nav =================*/
 
@@ -269,11 +258,16 @@ button {
 
 /*================ Intro =================*/
 #intro.intro {
-    padding: 12.8rem 0 22rem;
+    padding: 16rem 0;
 
-    background: url(/assets/images/bg-intro.jpg) no-repeat;
+    background: url(../images/bg-intro.jpg) no-repeat;
     background-position-y: -1rem;
     background-size: cover;
+}
+
+.circles {
+    opacity: 0;
+    pointer-events: none;
 }
 
 #intro.intro .circles img:first-child { 
@@ -302,14 +296,12 @@ button {
     height: 100%;
     left: auto;
     position: absolute;
-    background: var(--color-purple-2);
+    background: var(--color-medium-purple);
 }
-
 
 #intro.intro .btn {
     border-radius:  0 5px 5px 5px;
     padding: 1.6rem 2rem 1.6rem 13.5rem;
-
 }
 
 /*================ END Intro =================*/
@@ -317,12 +309,20 @@ button {
 
 
 /*================ About =================*/
+#about.about > div {
+    flex-direction: column;
+}
+
 #about.about img {
-    width: calc(100% - 3rem);
+    width: 40%;
     height: auto;
+    margin: 0 auto; 
+    object-fit: contain;
 }
 
 #about.about .content  {
+    margin: 0 auto;
+    text-align: center;
     padding: 3.2rem 3.2rem 0 0;
 }
 
@@ -342,34 +342,44 @@ button {
 
 /*================ Projects =================*/
 .projects .list {
-    padding: 6.4rem 0 3.2rem;
+    flex-direction: column;
+    padding: 3.2rem 0 1.2rem;
 }
 
-.projects .list img,
-.projects .splide__slide__container {
+.projects .list > li {
+    max-width: 100%;
+    margin-bottom: 2rem;
+}
+
+.projects .list li img {
     width: 100%;
-}
-
-.projects .list img {
     height: auto;
     border-radius: 5px;
-    border: solid #7A7A7A 1px;
 }
 
-.projects .list .title {
+.projects .list li .info {
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 25% 10%;
     background: rgba(11, 0, 20, .8);
 
-    opacity: 0;
+    opacity: 1;
+    pointer-events: click;
     transition: opacity ease-in .25s;
 }
 
-.projects .list .title.active { 
-    opacity: 1;
+.projects .list li .info .box {
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    position: absolute;
+
+    transform: translateY(-50%);
+}
+
+.projects .list li .info .box p {
+    padding-top: 1rem;
 }
 
 .projects .circle-detail {
@@ -378,119 +388,57 @@ button {
     pointer-events: none;
 }
 
-.projects .list .btn {
+.projects .list li .btn {
     margin: 1.6rem 1rem 0 0;
     background-color: var(--color-medium-yellow);
 }
 
-.projects .cta {
-    padding-top: 4rem;
+#code.projects .list li .info ul.tech  {
+    height: 3rem;
 }
 
-.projects .cta .btn {
-    margin-top: 2rem;
+#code.projects .list li .info ul.tech li:not(:last-child) {
+    margin-right: 1rem;
+}
+
+#code.projects .list li .info ul.tech li img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    filter: grayscale(100%);
 }
 
 /*================ END Projects =================*/
 
 
 
-/*================ Carousel =================*/
-.projects .list .splide__arrows .splide__arrow.splide__arrow--prev {
-    left: -5%;
-}
-
-.projects .list .splide__arrows .splide__arrow.splide__arrow--next {
-    right: -5%; 
-}
-
-.projects .list .splide__arrows .splide__arrow svg {
-    position: relative;
-    top: 35%;
-}
-
-.projects .list .splide__track {
-    padding-bottom: 1.6rem;
-}
-
-.projects .list .splide__pagination button.splide__pagination__page {
-    width: 10px;
-    height: 10px;
-    padding: 0;
-    margin: 0 1rem;
-}
-
-.projects .list .splide__pagination button.splide__pagination__page.is-active {
-    background: var(--color-yellow);
-}
-
-/*================ END Carousel =================*/
-
-
-
 /*================ Tools =================*/
-.tools {
-    max-height: 70rem;
-}
-
-.tools ul {
-    padding: 0;
+.tools ul.list {
     margin: 0 auto;
-    overflow: hidden;
-    position: relative;
+    padding: 3rem 0;
+    max-width: 40rem;
 }
 
-.tools ul div {
-    height: 0;
-    opacity: 0;
-    max-height: 0;
-    visibility: hidden;
-    transform: translate(0, -100%);
-    transition: opacity .3s ease, height .3s ease, transform .3s ease;
-}
-
-.tools ul.lang-list.active div,
-.tools ul.tools-list.active div {
-    opacity: 1;
-    height: auto;
-    max-height: 80rem;
-    visibility: visible;
-    transform: translate(0, 0);
-}
-
-.tools ul.tools-list li,
-.tools ul.lang-list li  {
+.tools ul.list li {
     margin: auto;
-    width: 15.7rem;
-    height: 15.7rem;
+    width: 14rem;
+    height: 14rem;
+    margin-bottom: 2rem;
     border-radius: 99rem;
+    filter: grayscale(100%);
     border: 1px solid var(--color-gray);
 }
 
-.tools .btn-group button {
-    width: 24.5rem;
-    margin: 4.6rem 3.2rem 6.4rem;
-    padding: 1.2rem 0;
-    border-radius: 5px;
-    text-transform: lowercase;
-    color: var(--color-light);
-    border: 1px solid var(--color-gray);
-}
-
-.tools .btn-group button.active {
-    background: var(--color-medium-yellow);
-    border-color: var(--color-medium-yellow);
+.tools ul.list li img {
+    width: 7rem;
 }
 
 .tools .gradient {
-    opacity: .2;
+    opacity: .5;
+    z-index: -1;
 }
 
-.tools ul.tools-list li:last-child,
-.tools ul.lang-list li:last-child  {
-    display: none;
-    border: none;
-}
+
 
 /*================ END Tools =================*/
 
@@ -498,7 +446,7 @@ button {
 
 /*================ Contact =================*/
 .contact {
-    background: url(/assets/images/bg-intro.jpg) no-repeat;
+    background: url(../images/bg-intro.jpg) no-repeat;
     background-position-y: -1rem;
     background-size: cover;
 }
@@ -552,43 +500,156 @@ button {
 
 
 
-/*================ Hovers =================*/
-@media (min-width: 991px) {
+/*================ Animation =================*/
+.animate__fade-in,
+.animate__slide-up,
+.animate__slide-left,
+.animate__slide-right {
+    opacity: 0;
+    transition: 0.5s ease;
+    transform: translate3d(0, 10%, 0);
+}
+
+.animate__fade-in {transform: translate3d(0, 0, 0)}
+.animate__slide-left {transform: translate3d(-10%, 0, 0)}
+.animate__slide-right {transform: translate3d(10%, 0, 0)}
+.animate__slide-up.visible,
+.animate__slide-left.visible,
+.animate__slide-right.visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.animate__fade-in.visible {opacity: 1}
+
+.animate__delay-1.visible {transition-delay: 0.1s}
+.animate__delay-2.visible {transition-delay: 0.2s}
+.animate__delay-3.visible {transition-delay: 0.3s}
+.animate__delay-4.visible {transition-delay: 0.4s}
+.animate__delay-5.visible {transition-delay: 0.5s}
+.animate__delay-6.visible {transition-delay: 0.6s}
+.animate__delay-7.visible {transition-delay: 0.7s}
+.animate__delay-8.visible {transition-delay: 0.8s}
+
+/*================ END Animation =================*/
+
+
+
+/*================ Responsive =================*/
+@media (max-width: 480px) {
+    .container {
+        max-width: 95%;
+    }
+
+    .tools ul.list li {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+
+@media (min-width: 481px) {
+    body, html {
+        font-size: 8px;
+    }
+
+    #about.about .content {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .circles {
+        opacity: 1;
+    }
+
+    .tools ul.list {
+        max-width: 66rem;
+    }
+
+}
+
+@media (max-width: 992px) {
+    .nav .menu .menu-toggle {
+        display: block;
+    }
+
+    .nav .menu .menu-list {
+        position: fixed;
+        top: -8px;
+        right: 0;
+        bottom: -8px;
+
+        padding: 0 8rem;
+        max-width: 30rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+
+        z-index: 12;
+        background: rgba(0,0,0,.9);
+
+        transform: translateX(100%);
+        transition: transform .3s ease;
+    }
+
+    .nav .menu .menu-list li {
+        margin: 0 0 3rem 0;
+    }
+
+    .nav .menu.active .menu-list {
+        transform: translateX(0%);
+    }
+
+    .nav .menu.active .menu-toggle {
+        position: fixed;
+        top: 40px;
+        right: 20px;
+    }
+
+    .nav .menu.active .menu-toggle i:first-child {
+        transform: rotate(45deg);
+    }
+
+    .nav .menu.active .menu-toggle i:last-child {
+        top: -2px;
+        position: relative;
+        transform: rotate(136deg);
+    }
+
+    .nav .menu.active .menu-toggle i:nth-child(2) {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+    /*================ Hovers =================*/
     .nav .menu svg:hover path.isabel { fill: var(--color-white); }
     .nav .menu svg:hover path.alves { fill: var(--color-yellow); }
     
     .btn,
-
     .nav .menu .menu-list li a,
     .nav .menu .menu-list li a.active,
-
     #intro.intro .btn,
     #about.about .btn,
-
     .tools ul li,  
-    .tools .btn-group button,
-    .projects .list .splide__arrows .splide__arrow,
     .contact .content .external a span,
     .footer .contact .external a span {
         transition: opacity ease-in-out .3s, padding-right ease-in-out .3s, padding ease-in-out .3s,  transform ease-in-out .3s, background ease-in-out .3s;
     }
     
+    .projects .list li .info:hover { 
+        opacity: 1;
+    }
     
     .tools .btn-group button:hover {
         background: var(--color-medium-yellow);
         border-color: var(--color-medium-yellow);
     }
 
-    .projects .list .splide__arrows .splide__arrow:hover {
-        background: var(--color-yellow);
-    }
-
-    .projects .list .splide__arrows .splide__arrow:hover svg {
-        fill: var(--color-dark-purple);
-    } 
-    
     .tools ul li:hover  {
-        background: var(--color-purple-2);
+        background: var(--color-medium-purple);
         border: 1px solid var(--color-gray);
     }
 
@@ -611,218 +672,78 @@ button {
         transform: scale(1);
     }
 
-    .projects .list .splide__track .splide__list .splide__slide:hover .title { 
-        opacity: 1;
-    }
-
     .nav .menu .menu-list li a:hover,
     .nav .menu .menu-list li a.active {
         opacity: 1;
     }
-}
-
-/*================ END Hovers =================*/
+    /*================ END Hovers =================*/
 
 
 
-/*================ Responsive =================*/
-@media (min-width: 1578px) {
-    .container {
-       max-width: 1440px; 
-    }
-} 
+    br { display: block; }
 
-@media (max-width: 1578px) {
-    .menu-list.grid-5 {
-        max-width: 50%;
-    } 
-}
+    .padding-default { padding: 12.8rem 0; }
 
-@media (max-width: 1440px) {
-    body, html {
-        font-size: 9px;
-    }
-    
-    .content .grid-6 {
-        max-width: 60%;
-    }
-    .grid-7 {
-        max-width: 77%;
-    }
-}
-
-@media (max-width: 1198px) {
-    .tools img {
-        width: 4.5rem;
-        height: auto;
+    .nav .menu svg { 
+        width: 18rem;
     }
 
-    .tools ul.tools-list li, 
-    .tools ul.lang-list li {
-        width: 12.7rem;
-        height: 12.7rem;
-        margin-bottom: 2rem;
-    }
-
-    .tools .btn-group button {
-        margin: 4.6rem 1rem 6.4rem; 
-    }
-}
-
-@media (max-width: 991px) { 
-    body, html {
-        font-size: 8px;
-    }
-
-    .nav .menu .menu-list {
-        display: none;
-    }
-
-    .nav .menu .menu-toggle {
-        display: block;
-    }
-    
-    .nav .menu .menu-list {
-        position: fixed;
-        top: -8px;
-        right: 0;
-        bottom: -8px;
-    
-        padding: 0 8rem;
-        max-width: 30rem;
-    
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-    
-        z-index: 12;
-        background: rgba(0,0,0,.9);
-
-        transform: translateX(100%);
-        transition: transform .3s ease;
-    }
-
-    .nav .menu .menu-list li {
-        margin: 0 0 3rem 0;
-    }
-
-    .nav .menu.active .menu-list {
-        transform: translateX(0%);
-    }
-    
-    .nav .menu.active .menu-toggle {
-        position: fixed;
-        top: 40px;
-        right: 20px;
-    }
-
-    .nav .menu.active .menu-toggle i:first-child {
-        transform: rotate(45deg);
-    }
-   
-    .nav .menu.active .menu-toggle i:last-child {
-        top: -2px;
-        position: relative;
-        transform: rotate(136deg);
-    }
-    
-    .nav .menu.active .menu-toggle i:nth-child(2) {
-        display: none;
-    }
-
-    .tools ul.tools-list li:last-child,
-    .tools ul.lang-list li:last-child  {
-        display: block;
-    }
-}
-
-@media (max-width: 768px){ 
     #intro.intro {
-        padding: 12.8rem 0 18rem;
+        padding: 20.8rem 0 22rem;
     }
 
-    #intro.intro .circles img {
-        width: 60%;
-        height: auto;
-    }
-
-    #intro.intro .circles img:nth-child(2) {
-        right: -21.9rem;
-    }
-
-    .about > div {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }    
-    
-    .about .container > div  {
-        max-width: 80%;
+    #about.about > div {
+        flex-direction: row;
     }
     
-    .about .container > div + div {
-        max-width: 100%;
-        padding-top: 2rem;
-    }
+    #about.about .content {
+        width: 80%;
 
-    .content .grid-6 {
-        max-width: 80%;
-    }
-
-    #intro.intro .btn {
-        width: 10rem;
+        text-align: right;
     }
 
     #about.about img {
-        width: 100%;
+        margin-right: 8rem;
     }
 
-    .tools {
-        max-height: 80rem;
+    .projects .list {
+        flex-direction: row;
+        padding: 6.4rem 0 1.2rem;
     }
 
-    .projects .circle-detail {
-        display: none;
+    .projects .list li {
+        max-width: calc(50% - 1rem);
     }
 
-    .projects .list .splide__arrows .splide__arrow {
-        display: none;
+    .projects .list li .info  {
+        opacity: 0;
     }
 
-    .projects .list .title h3 {
-        font-size: 2.8rem;
+    .projects .list li .info .box {
+        left: 10%;
+        right: 10%;
     }
 
-    .projects .list .title {
-        padding: 15%;
+    .tools ul.list {
+        max-width: 70rem;
+    }
+
+    .tools ul.list li {
+        width: 16rem;
+        height: 16rem;
     }
 }
 
-@media (max-width: 549px) {
-    body, html {
-        font-size: 7px;
+@media (min-width: 1200px) {
+   
+}
+
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
     }
 
-    .content .grid-5,
-    .content .grid-6 {
-        max-width: 100%;
-    }
+}
 
-    .grid-7 {
-        max-width: 90%;
-    }
 
-    #intro.intro .btn {
-        width: 55%;
-        padding: 1.6rem 2rem 1.6rem 4.5rem;
-    }
-
-    #intro.intro .content h1 {
-        padding: 0 0 3.2rem 1.2rem;
-    }
-
-    .tools {
-        max-height: 100rem;
-    }
-} 
